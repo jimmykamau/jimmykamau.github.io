@@ -1,23 +1,27 @@
 # Site settings
-email: 
+email: "email@jimmykamau.info"
 baseurl: ""
 paginate: 5
 paginate_path: "/blog/page-:num"
-google_analytics: 
+google_analytics:
 
 # SEO settings
-title: Trophy
-description: 
+title: "Jimmy Kamau"
+description:
 url: ""
-twitter_username: 
-default_img: 
+twitter_username:
+default_img:
 
 # Profile settings
-name: 
-profile_img: 
-profile: 
+name: "Jimmy Kamau"
+profile_img: "/assets/images/me.jpg"
+profile: "Hi! I am Jimmy - yes, I have a hand. I eat, sleep and breathe technology."
 social:
-  github: 
+  github: "https://github.com/jimmykamau"
+  twitter: "https://twitter.com/kamau_jimmy"
+  facebook: "https://www.facebook.com/xerxes.slim"
+  linkedin: "https://www.linkedin.com/in/jimmy-kamau"
+  instagram: "https://www.instagram.com/kamaujimmy/"
 
 # Build settings
 include: ["_categories"]
