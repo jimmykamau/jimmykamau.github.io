@@ -3,7 +3,7 @@ layout: post
 title: "Hello World!"
 date: 2017-01-01
 categories:
-  - Code
+  - Miscellaneous
 description:
 image: https://unsplash.it/2000/1200?image=759
 image-sm: https://unsplash.it/500/300?image=759
