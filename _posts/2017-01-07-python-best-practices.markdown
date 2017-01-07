@@ -6,8 +6,8 @@ categories:
   - Python
   - Code
 description: "Reformatting a project to comply with Python's best practices"
-image: /assets/images/hello.png
-image-sm: /assets/images/hello.png
+image: /assets/images/2017-01-07/best_practices.jpg
+image-sm: /assets/images/2017-01-07/best_practices.jpg
 ---
 
 Conforming to a language's best practices doesn't only help us to write maintainable code, but also helps in the process of debugging. Python has its own rules and regulations that are considered best practices.
