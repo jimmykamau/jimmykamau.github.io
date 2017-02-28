@@ -1,37 +1,66 @@
-# Site settings
-email: "email@jimmykamau.info"
-baseurl: ""
-paginate: 5
-paginate_path: "/blog/page-:num"
-google_analytics:
+# Mandatory settings
 
-# SEO settings
-title: "Jimmy Kamau"
-description: "Jimmy Kamau's journey through Techville"
-url: ""
-twitter_username: "kamau_jimmy"
-default_img: "/assets/images/me.jpg"
+name: Chalk
+paginate: 25
+paginate_path: "/posts/page/:num/"
+url: # add site url http://example.com/
+blog_theme: light # Or use dark
 
-# Profile settings
-name: "Jimmy Kamau"
-profile_img: "/assets/images/me.jpg"
-profile: "Hi! I am Jimmy - born, raised, educated, living and working in Nairobi. I eat, sleep and breathe technology."
+# Optional settings
+
+discus_identifier: # Add your Disqus identifier
+ga_analytics: # Add your GA Tracking Id
+rss_enabled: true # Change to false if not
+about_enabled: false # Change to true if you wish to show an icon in the navigation that redirects to the about page
 social:
-  github: "https://github.com/jimmykamau"
-  twitter: "https://twitter.com/kamau_jimmy"
-  facebook: "https://www.facebook.com/xerxes.slim"
-  linkedin: "https://www.linkedin.com/in/jimmy-kamau"
-  instagram: "https://www.instagram.com/kamaujimmy/"
+  dribbble: # Add your Dribbble handle
+  facebook: # Add your Facebook handle
+  flickr: # Add your Flickr handle
+  github: # Add your GitHub handle
+  linkedin: # Add your LinkedIn handle
+  twitter: # Add your Twitter handle
+  email: # Add your Email address
+  bitcoin: # Add your Bitcoin link or address
 
-# Build settings
-include: ["_categories"]
-exclude: ["_screenshots", "Gemfile", "Gemfile.lock"]
-markdown: kramdown
-permalink: /:year/:month/:day/:title/
+# Important settings (change at own risk)
 
-# Sass
-sass:
-  style: compressed
-
-# Gems
-gems: [jekyll-paginate, jekyll-sitemap, octopress-autoprefixer]
+assets:
+  compress:
+    css: true
+    js: true
+  features:
+    automatic_img_size: false
+  sources:
+    - _assets/bower
+    - _assets/fonts
+    - _assets/images
+    - _assets/javascripts
+    - _assets/stylesheets
+    - _vendor/
+collections:
+  my_tags:
+    output: true
+    permalink: /tag/:slug/
+defaults:
+  -
+    scope:
+      path: ""
+      type: my_tags
+    values:
+      layout: articles_by_tag
+exclude:
+  - .bowerrc
+  - .travis.yml
+  - bin/*
+  - bower.json
+  - circle.yml
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor/
+gems:
+  - jekyll-assets
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jemoji
+permalink: posts/:slug
