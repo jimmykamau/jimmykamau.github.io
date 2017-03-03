@@ -5,7 +5,7 @@ description: "Using NumPy to format data for Google Hash Code's pizza problem."
 tags: [python]
 ---
 
-There comes a time in a person's life that they have to face the knife: cut a tomato-and-mushroom pizza into slices with just the right amount of ingredients on each slice. This can be a really daunting task, especially if Chef Gusteau was having a bad day and just threw the ingredients onto the dough. Worry not though, technology is here to save the day!
+There comes a time in a person's life that they have to face the knife: cut a tomato-and-mushroom pizza into slices with just the right amount of ingredients on each slice. This can be a really daunting task, especially if Chef Gusteau was having a bad day and just threw the ingredients onto the dough. Worry not, though, technology is here to save the day!
 
 The good peeps at Google decided to turn this scenario into a practice problem for Hash Code 2017. In their own words:
 
@@ -117,4 +117,4 @@ Running this file, `python pizza_problem.py` gives the following output:
  ['T' 'T' 'T' 'T' 'T' 'T' 'M']]
 {% endhighlight %}
 
-A :pizza: matrix, :yum:. Part two of this post will cover solving the slice problem with the formatted data.
+A :pizza: matrix, :yum:. Part two of this post will cover solving the slicing problem with the formatted data.
