@@ -61,7 +61,7 @@ Next setup your environment:
 
 Run Jekyll:
 
-    bundle exec jekyll serve
+    bin/run
 
 ### Deploy to GitHub Pages
 
