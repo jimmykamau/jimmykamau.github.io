@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>JK | Making pizza with Python</title>
+  <meta name="description" content="Using NumPy to format data for Google Hash Code's pizza problem.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="Making pizza with Python">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jimmykamau.com//posts/making-pizza-with-python">
+  <meta property="og:description" content="Using NumPy to format data for Google Hash Code's pizza problem.">
+  <meta property="og:site_name" content="JK">
+  <meta property="og:image" content="https://jimmykamau.com//assets/og-image.jpg">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://jimmykamau.com//posts/making-pizza-with-python">
+  <meta name="twitter:title" content="Making pizza with Python">
+  <meta name="twitter:description" content="Using NumPy to format data for Google Hash Code's pizza problem.">
+  <meta name="twitter:image" content="https://jimmykamau.com//assets/og-image.jpg">
+
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link href="https://jimmykamau.com//feed.xml" type="application/rss+xml" rel="alternate" title="JK Last 10 blog posts">
+
+  
+    <link type="text/css" rel="stylesheet" href="/assets/light.css">
+  
+</head>
+
+<body>
+  <main role="main">
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav reveal">
+  <a href="/" class="header-logo" title="JK">JK</a>
+  <ul class="header-links">
+    
+    
+      <li>
+        <a href="https://twitter.com/kamau_jimmy" target="_blank" title="Twitter">
+          <span class="icon icon-social-twitter"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://www.facebook.com/xerxes.slim" target="_blank" title="Facebook">
+          <span class="icon icon-social-facebook"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://github.com/jimmykamau" target="_blank" title="GitHub">
+          <span class="icon icon-social-github"></span>
+        </a>
+      </li>
+    
+    
+    
+    
+      <li>
+        <a href="https://www.linkedin.com/in/jimmy-kamau" target="_blank" title="LinkedIn">
+          <span class="icon icon-social-linkedin"></span>
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="mailto:email@jimmykamau.com" title="Email">
+          <span class="icon icon-at"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="/feed.xml" target="_blank" title="RSS">
+          <span class="icon icon-social-rss"></span>
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+        <article class="article reveal">
+          <header class="article-header">
+            <h1>Making pizza with Python</h1>
+            <p>Using NumPy to format data for Google Hash Code's pizza problem.</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                March 2, 2017
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  5 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/python">python</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <p>There comes a time in a person’s life that they have to face the knife: cut a tomato-and-mushroom pizza into slices with just the right amount of ingredients on each slice. This can be a really daunting task, especially if Chef Gusteau was having a bad day and just threw the ingredients onto the dough. Worry not, though, technology is here to save the day!</p>
+
+<p>The good peeps at Google decided to turn this scenario into a practice problem for Hash Code 2017. In their own words:</p>
+
+<blockquote>
+  <p>The pizza is represented as a rectangular, 2-dimensional grid of R rows and C columns. The cells within the grid are referenced using a pair of 0-based coordinates [r, c] , denoting respectively the row and the column of the cell.</p>
+</blockquote>
+
+<p>They went on to explain that each cell of the pizza contains either:</p>
+<ul>
+  <li>mushroom, represented in the input file as M ; or</li>
+  <li>represented in the input file as T</li>
+</ul>
+
+<p>The input was provided as a data file - a plain text file containing exclusively ASCII characters with lines terminated with a single ‘\n’ character at the end of each line (UNIX- style line endings). The file consisted of:</p>
+
+<ol>
+  <li>one line containing the following natural numbers separated by single spaces:
+    <ul>
+      <li>R (1 ≤ R ≤ 1000) i s t he n umber o f r ows,</li>
+      <li>C (1 ≤ C ≤ 1000) i s t he n umber o f c olumns,</li>
+      <li>L (1 ≤ L ≤ 1000) i s t he m inimum n umber o f e ach i ngredient cells i n a slice,</li>
+      <li>H (1 ≤ H ≤ 1000) i s t he m aximum t otal n umber o f c ells o f a slice</li>
+    </ul>
+  </li>
+  <li>
+<strong>R</strong> lines describing the rows of the pizza (one after another). Each of these lines contains <strong>C</strong> characters describing the ingredients in the cells of the row (one cell after another). Each character is either ‘M’ (for mushroom) or ‘T’ (for tomato).</li>
+</ol>
+
+<p>An example file (small.in) looked like this:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">6 7 1 5
+TMMMTTT
+MMMMTMM
+TTMTTMT
+TMMTMMM
+TTTTTTM
+TTTTTTM</code></pre></figure>
+
+<p>The first line gives us information about the pizza:</p>
+<ol>
+  <li>The pizza has 6 rows and 7 columns</li>
+  <li>There should be a minimum of 1 of each ingredient in each slice</li>
+  <li>There should be a maximum of 5 cells (ingredients) per slice</li>
+</ol>
+
+<p>Getting a mental image of the pizza from the file above isn’t very easy, so we have to find a way to reformat it into something more understandable. I decided to make use of NumPy for this.</p>
+
+<p>If you haven’t already, install NumPy as outlined in their <a href="http://www.numpy.org/">official documentation</a>. Let’s get crackn’..</p>
+
+<p>I created a <code class="highlighter-rouge">pizza.py</code> file to hold the Pizza class with all the functionality:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+
+<span class="k">class</span> <span class="nc">Pizza</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span> <span class="o">=</span> <span class="n">file_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">number_of_rows</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">number_of_columns</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_ingredients_per_slice</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_cells_per_slice</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ingredients</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_array</span> <span class="o">=</span> <span class="p">[[]]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parse_data</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">parse_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">,</span> <span class="s">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">pizza_values</span><span class="p">:</span>
+            <span class="n">first_line</span> <span class="o">=</span> <span class="n">pizza_values</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">pizza_values</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">number_of_rows</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">first_line</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">number_of_columns</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">first_line</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_ingredients_per_slice</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">first_line</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_cells_per_slice</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">first_line</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ingredients</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="s">""</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ingredients</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="s">'S1'</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
+                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">number_of_rows</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">number_of_columns</span><span class="p">))</span></code></pre></figure>
+
+<p>The meat of the application is in the <code class="highlighter-rouge">parse_data</code> method. The method first opens the file provided in <code class="highlighter-rouge">read</code> mode and assigns the first line of the file to the <code class="highlighter-rouge">first_line</code> variable. It then reads the rest of the data and stores it in the <code class="highlighter-rouge">data</code> variable. The method then assigns the data from the first line to various variables.
+If we print the <code class="highlighter-rouge">data</code> variable after passing a file with the example data above, we see that it contains a list of the ingredients:
+<code class="highlighter-rouge">['TMMMTTT\n', 'MMMMTMM\n', 'TTMTTMT\n', 'TMMTMMM\n', 'TTTTTTM\n', 'TTTTTTM\n']</code>
+The line <code class="highlighter-rouge">self.ingredients = [item.replace("\n", "") for item in data]</code> is a short way of writing:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+    <span class="n">item</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="s">""</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">ingredients</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span></code></pre></figure>
+
+<p>This line iterates through <code class="highlighter-rouge">data</code> and strips out every newline (\n) character from the individual items. It then appends each item to the <code class="highlighter-rouge">self.ingredients</code> list.</p>
+
+<p>We then create a matrix of ingredients by using the power of NumPy.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="bp">self</span><span class="o">.</span><span class="n">data_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ingredients</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="s">'S1'</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
+            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">number_of_rows</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">number_of_columns</span><span class="p">))</span></code></pre></figure>
+
+<p>We first tell NumPy to create a matrix of strings from the <code class="highlighter-rouge">self.ingredients</code> list: <code class="highlighter-rouge">np.array(self.ingredients, dtype=str)
+</code>view(S1)<code class="highlighter-rouge"> ensures that each cell in the matrix contains one character. </code>reshape(self.number_of_rows, self.number_of_columns)` ensures the matrix created is the shape specified by the data received.</p>
+
+<p>We can create a <code class="highlighter-rouge">pizza_problem.py</code> file that will create an instance of the Pizza class and supply it with data:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">pizza</span> <span class="kn">import</span> <span class="n">Pizza</span>
+
+<span class="n">pizza</span> <span class="o">=</span> <span class="n">Pizza</span><span class="p">(</span><span class="s">"small.in"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">pizza</span><span class="o">.</span><span class="n">data_array</span><span class="p">)</span></code></pre></figure>
+
+<p>Running this file, <code class="highlighter-rouge">python pizza_problem.py</code> gives the following output:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">[['T' 'M' 'M' 'M' 'T' 'T' 'T']
+ ['M' 'M' 'M' 'M' 'T' 'M' 'M']
+ ['T' 'T' 'M' 'T' 'T' 'M' 'T']
+ ['T' 'M' 'M' 'T' 'M' 'M' 'M']
+ ['T' 'T' 'T' 'T' 'T' 'T' 'M']
+ ['T' 'T' 'T' 'T' 'T' 'T' 'M']]</code></pre></figure>
+
+<p>A <img class="emoji" title=":pizza:" alt=":pizza:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f355.png" height="20" width="20"> matrix, <img class="emoji" title=":yum:" alt=":yum:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f60b.png" height="20" width="20">. Part two of this post will cover solving the slicing problem with the formatted data.</p>
+
+          </div>
+
+          <div class="article-share">
+            
+            <a href="" title="Share on Twitter" onclick="window.open('https://twitter.com/home?status=Making pizza with Python - https://jimmykamau.com//posts/making-pizza-with-python by @kamau_jimmy', 'newwindow', 'width=500, height=225'); return false;" data-turbolinks="false">
+              <svg enable-background="new 0 0 128 128" width="15px" version="1.1" viewbox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x37__stroke"><g id="Twitter"><rect clip-rule="evenodd" fill="none" fill-rule="evenodd" height="128" width="128"></rect><path clip-rule="evenodd" d="M128,23.294    c-4.703,2.142-9.767,3.59-15.079,4.237c5.424-3.328,9.587-8.606,11.548-14.892c-5.079,3.082-10.691,5.324-16.687,6.526    c-4.778-5.231-11.608-8.498-19.166-8.498c-14.493,0-26.251,12.057-26.251,26.927c0,2.111,0.225,4.16,0.676,6.133    C41.217,42.601,21.871,31.892,8.91,15.582c-2.261,3.991-3.554,8.621-3.554,13.552c0,9.338,4.636,17.581,11.683,22.412    c-4.297-0.131-8.355-1.356-11.901-3.359v0.331c0,13.051,9.053,23.937,21.074,26.403c-2.201,0.632-4.523,0.948-6.92,0.948    c-1.69,0-3.343-0.162-4.944-0.478c3.343,10.694,13.035,18.483,24.53,18.691c-8.986,7.227-20.315,11.533-32.614,11.533    c-2.119,0-4.215-0.123-6.266-0.37c11.623,7.627,25.432,12.088,40.255,12.088c48.309,0,74.717-41.026,74.717-76.612    c0-1.171-0.023-2.342-0.068-3.49C120.036,33.433,124.491,28.695,128,23.294" fill-rule="evenodd" id="Twitter_1_"></path></g></g></svg>
+            </a>
+            <a href="" title="Share on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https://jimmykamau.com//posts/making-pizza-with-python', 'newwindow', 'width=500, height=500'); return false;" data-turbolinks="false">
+              <svg enable-background="new 0 0 128 128" width="15px" version="1.1" viewbox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x31__stroke"><g id="Facebook_1_"><rect fill="none" height="128" width="128"></rect><path clip-rule="evenodd" d="M68.369,128H7.065C3.162,128,0,124.836,0,120.935    V7.065C0,3.162,3.162,0,7.065,0h113.871C124.837,0,128,3.162,128,7.065v113.87c0,3.902-3.163,7.065-7.064,7.065H88.318V78.431    h16.638l2.491-19.318H88.318V46.78c0-5.593,1.553-9.404,9.573-9.404l10.229-0.004V20.094c-1.769-0.235-7.841-0.761-14.906-0.761    c-14.749,0-24.846,9.003-24.846,25.535v14.246H51.688v19.318h16.681V128z" fill-rule="evenodd" id="Facebook"></path></g></g></svg>
+            </a>
+            <a href="" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=https://jimmykamau.com//posts/making-pizza-with-python', 'newwindow', 'width=550, height=400'); return false;" data-turbolinks="false">
+              <svg enable-background="new 0 0 128 128" version="1.1" viewbox="0 0 128 128" width="20px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x35__stroke"><g id="Google_Plus"><rect clip-rule="evenodd" fill="none" fill-rule="evenodd" height="128" width="128"></rect><path clip-rule="evenodd" d="M40.654,55.935v16.13    c0,0,15.619-0.021,21.979-0.021C59.189,82.5,53.834,88.194,40.654,88.194c-13.338,0-23.748-10.832-23.748-24.194    s10.41-24.194,23.748-24.194c7.052,0,11.607,2.483,15.784,5.944c3.344-3.35,3.065-3.828,11.573-11.877    c-7.222-6.586-16.822-10.6-27.357-10.6C18.201,23.273,0,41.507,0,64c0,22.493,18.201,40.727,40.654,40.727    c33.561,0,41.763-29.275,39.044-48.792H40.654z M113.912,56.742V42.628h-10.063v14.113H89.358v10.081h14.491v14.517h10.063V66.823    H128V56.742H113.912z" fill-rule="evenodd" id="Google_Plus_1_"></path></g></g></svg>
+            </a>
+          </div>
+
+          
+            <div id="disqus_thread" class="article-comments"></div>
+            <script>
+              (function() {
+                  var d = document, s = d.createElement('script');
+                  s.src = '//jimmykamau.disqus.com/embed.js';
+                  s.setAttribute('data-timestamp', +new Date());
+                  (d.head || d.body).appendChild(s);
+              })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+          
+        </article>
+        <footer class="footer reveal">
+  <p>
+    Copyright <a href="/about" title="About me"><b>Jimmy Kamau</b></a> ©2018 
+  </p>
+  <p>
+    Published with <a href="https://jekyllrb.com/" target="_blank" title="Jekyll">Jekyll</a> and hosted on <a href="https://pages.github.com/" target="_blank" title="Github Pages">Github Pages</a>
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Cormorant Garamond:700', 'Lato:300,400,700']
+    }
+  });
+</script>
+
+
+
+<script type="text/javascript" src="/assets/vendor.js"></script>
+<script type="text/javascript" src="/assets/application.js"></script>
+
+</body>
+</html>
