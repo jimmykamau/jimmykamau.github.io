@@ -4,6 +4,9 @@ title: "From Virtualenv to Pipenv"
 description: "Migrate your Python project from Virtualenv to Pipenv."
 tags: [python]
 ---
+**Assumptions**:
+* You have a Python project in a virtual environment.
+* Your project's top-level directory contains your `env/` folder, `.env` and `requirements.txt` files.
 
 Install Pipenv as explained in [the docs](https://pipenv.readthedocs.io/en/latest/install/#installing-pipenv).
 
