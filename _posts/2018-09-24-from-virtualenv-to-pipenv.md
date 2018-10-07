@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "From Virtualenv to Pipenv"
-description: "Migrate your Python project from Virtualenv to Pipenv."
+title: "Setting up Pipenv"
+description: "Migrate your Python project to Pipenv."
 tags: [python]
 ---
 **Assumptions**:
