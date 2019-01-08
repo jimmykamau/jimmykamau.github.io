@@ -22,3 +22,7 @@ $(document).on('turbolinks:load', function () {
 });
 
 window.sr = ScrollReveal({ reset: true });
+
+var currentDate = new Date();
+var currentYear = currentDate.getFullYear();
+$("#copy_year").text(currentYear);
