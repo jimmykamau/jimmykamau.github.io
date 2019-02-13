@@ -1,4 +1,0 @@
----
-slug: djocker
-name: Djocker
----

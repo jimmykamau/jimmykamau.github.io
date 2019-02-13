@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>JK | Setting up Pipenv</title>
+  <meta name="description" content="Migrate your Python project to Pipenv.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="Setting up Pipenv">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jimmykamau.com//posts/from-virtualenv-to-pipenv">
+  <meta property="og:description" content="Migrate your Python project to Pipenv.">
+  <meta property="og:site_name" content="JK">
+  <meta property="og:image" content="https://jimmykamau.com//assets/og-image.jpg">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://jimmykamau.com//posts/from-virtualenv-to-pipenv">
+  <meta name="twitter:title" content="Setting up Pipenv">
+  <meta name="twitter:description" content="Migrate your Python project to Pipenv.">
+  <meta name="twitter:image" content="https://jimmykamau.com//assets/og-image.jpg">
+
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link href="https://jimmykamau.com//feed.xml" type="application/rss+xml" rel="alternate" title="JK Last 10 blog posts" />
+
+  
+    <link type="text/css" rel="stylesheet" href="/assets/light.css">
+  
+</head>
+
+<body>
+  <main role="main">
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav reveal">
+  <a href="/" class="header-logo" title="JK">JK</a>
+  <ul class="header-links">
+    
+    
+      <li>
+        <a href="https://twitter.com/kamau_jimmy" target="_blank" title="Twitter">
+          <span class="icon icon-social-twitter"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://www.facebook.com/xerxes.slim" target="_blank" title="Facebook">
+          <span class="icon icon-social-facebook"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://github.com/jimmykamau" target="_blank" title="GitHub">
+          <span class="icon icon-social-github"></span>
+        </a>
+      </li>
+    
+    
+    
+    
+      <li>
+        <a href="https://www.linkedin.com/in/jimmy-kamau" target="_blank" title="LinkedIn">
+          <span class="icon icon-social-linkedin"></span>
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="mailto:email@jimmykamau.com" title="Email">
+          <span class="icon icon-at"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="/feed.xml" target="_blank" title="RSS">
+          <span class="icon icon-social-rss"></span>
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+        <article class="article reveal">
+          <header class="article-header">
+            <h1>Setting up Pipenv</h1>
+            <p>Migrate your Python project to Pipenv.</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                September 24, 2018
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  2 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/python">python</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <p><strong>Assumptions</strong>:</p>
+<ul>
+  <li>You have a Python project in a virtual environment.</li>
+  <li>Your project’s top-level directory contains your <code class="highlighter-rouge">env/</code> folder, <code class="highlighter-rouge">.env</code> and <code class="highlighter-rouge">requirements.txt</code> files.</li>
+</ul>
+
+<p>Install Pipenv as explained in <a href="https://pipenv.readthedocs.io/en/latest/install/#installing-pipenv">the docs</a>.</p>
+
+<p><code class="highlighter-rouge">cd</code> into your project’s root directory (you hopefully have your <code class="highlighter-rouge">env/</code> folder, <code class="highlighter-rouge">.env</code> and <code class="highlighter-rouge">requirements.txt</code> files in the root directory) and optionally switch to a branch other than <code class="highlighter-rouge">master</code>:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">foo@bar:~$</span> <span class="nb">cd </span>my_project
+<span class="gp">foo@bar:~$</span> git checkout <span class="nt">-b</span> migrate_to_pipenv
+</code></pre></div></div>
+<p>(Sidenote: Check out <a href="https://ohmyz.sh/">Oh My Zsh</a> and <a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins#wd">wd</a> for a supercharged terminal)</p>
+
+<p>Spawn a shell. This will generate a <code class="highlighter-rouge">Pipfile</code> from your <code class="highlighter-rouge">requirements.txt</code></p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">foo@bar:~$</span> pipenv shell
+<span class="go">requirements.txt found, instead of Pipfile! Converting…
+Warning: Your Pipfile now contains pinned versions, if your requirements.txt did.
+We recommend updating your Pipfile to specify the "*" version, instead.
+Spawning environment shell (/bin/zsh). Use 'exit' to leave.
+</span></code></pre></div></div>
+
+<p>The generated Pipfile will probably have pinned versions. It’s recommended that you convert these to ‘*’ versions (anyone knows of an automated way to do this?).</p>
+
+<figure class="highlight"><pre><code class="language-toml" data-lang="toml"><span class="py">certifi</span> <span class="p">=</span> <span class="s">"==2017.11.5"</span>     <span class="c"># convert this to</span>
+<span class="py">certifi</span> <span class="p">=</span> <span class="s">"*"</span></code></pre></figure>
+
+<p>Install the packages to the new environment (this will update your packages). This will also generate a <code class="highlighter-rouge">Pipfile.lock</code>:</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">foo@bar:~$</span> pipenv install
+<span class="go">Pipfile.lock not found, creating…
+Locking [dev-packages] dependencies…
+Locking [packages] dependencies…
+Updated Pipfile.lock (bd2078)!
+Installing dependencies from Pipfile.lock (bd2078)…
+  🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ 5/5 — 00:00:01
+</span></code></pre></div></div>
+
+<p>Update your <code class="highlighter-rouge">requirements.txt</code>:</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">foo@bar:~$</span> pipenv lock <span class="nt">-r</span> <span class="o">&gt;</span> requirements.txt
+</code></pre></div></div>
+
+          </div>
+
+          <div class="article-share">
+            
+            <a href="" title="Share on Twitter" onclick="window.open('https://twitter.com/home?status=Setting up Pipenv - https://jimmykamau.com//posts/from-virtualenv-to-pipenv by @kamau_jimmy', 'newwindow', 'width=500, height=225'); return false;" data-turbolinks="false">
+              <svg enable-background="new 0 0 128 128" width="15px" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x37__stroke"><g id="Twitter"><rect clip-rule="evenodd" fill="none" fill-rule="evenodd" height="128" width="128"/><path clip-rule="evenodd" d="M128,23.294    c-4.703,2.142-9.767,3.59-15.079,4.237c5.424-3.328,9.587-8.606,11.548-14.892c-5.079,3.082-10.691,5.324-16.687,6.526    c-4.778-5.231-11.608-8.498-19.166-8.498c-14.493,0-26.251,12.057-26.251,26.927c0,2.111,0.225,4.16,0.676,6.133    C41.217,42.601,21.871,31.892,8.91,15.582c-2.261,3.991-3.554,8.621-3.554,13.552c0,9.338,4.636,17.581,11.683,22.412    c-4.297-0.131-8.355-1.356-11.901-3.359v0.331c0,13.051,9.053,23.937,21.074,26.403c-2.201,0.632-4.523,0.948-6.92,0.948    c-1.69,0-3.343-0.162-4.944-0.478c3.343,10.694,13.035,18.483,24.53,18.691c-8.986,7.227-20.315,11.533-32.614,11.533    c-2.119,0-4.215-0.123-6.266-0.37c11.623,7.627,25.432,12.088,40.255,12.088c48.309,0,74.717-41.026,74.717-76.612    c0-1.171-0.023-2.342-0.068-3.49C120.036,33.433,124.491,28.695,128,23.294" fill-rule="evenodd" id="Twitter_1_"/></g></g></svg>
+            </a>
+            <a href="" title="Share on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https://jimmykamau.com//posts/from-virtualenv-to-pipenv', 'newwindow', 'width=500, height=500'); return false;" data-turbolinks="false">
+              <svg enable-background="new 0 0 128 128" width="15px" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x31__stroke"><g id="Facebook_1_"><rect fill="none" height="128" width="128"/><path clip-rule="evenodd" d="M68.369,128H7.065C3.162,128,0,124.836,0,120.935    V7.065C0,3.162,3.162,0,7.065,0h113.871C124.837,0,128,3.162,128,7.065v113.87c0,3.902-3.163,7.065-7.064,7.065H88.318V78.431    h16.638l2.491-19.318H88.318V46.78c0-5.593,1.553-9.404,9.573-9.404l10.229-0.004V20.094c-1.769-0.235-7.841-0.761-14.906-0.761    c-14.749,0-24.846,9.003-24.846,25.535v14.246H51.688v19.318h16.681V128z" fill-rule="evenodd" id="Facebook"/></g></g></svg>
+            </a>
+            <a href="" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=https://jimmykamau.com//posts/from-virtualenv-to-pipenv', 'newwindow', 'width=550, height=400'); return false;" data-turbolinks="false">
+              <svg enable-background="new 0 0 128 128" version="1.1" viewBox="0 0 128 128" width="20px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x35__stroke"><g id="Google_Plus"><rect clip-rule="evenodd" fill="none" fill-rule="evenodd" height="128" width="128"/><path clip-rule="evenodd" d="M40.654,55.935v16.13    c0,0,15.619-0.021,21.979-0.021C59.189,82.5,53.834,88.194,40.654,88.194c-13.338,0-23.748-10.832-23.748-24.194    s10.41-24.194,23.748-24.194c7.052,0,11.607,2.483,15.784,5.944c3.344-3.35,3.065-3.828,11.573-11.877    c-7.222-6.586-16.822-10.6-27.357-10.6C18.201,23.273,0,41.507,0,64c0,22.493,18.201,40.727,40.654,40.727    c33.561,0,41.763-29.275,39.044-48.792H40.654z M113.912,56.742V42.628h-10.063v14.113H89.358v10.081h14.491v14.517h10.063V66.823    H128V56.742H113.912z" fill-rule="evenodd" id="Google_Plus_1_"/></g></g></svg>
+            </a>
+          </div>
+
+          
+            <div id="disqus_thread" class="article-comments"></div>
+            <script>
+              (function() {
+                  var d = document, s = d.createElement('script');
+                  s.src = '//jimmykamau.disqus.com/embed.js';
+                  s.setAttribute('data-timestamp', +new Date());
+                  (d.head || d.body).appendChild(s);
+              })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          
+        </article>
+        <footer class="footer reveal">
+  <p>
+    Copyright <a href="/about" title="About me"><b>Jimmy Kamau</b></a> &copy;<i id="copy_year">2019</i></br>
+  </p>
+  <p>
+    Published with <a href="https://jekyllrb.com/" target="_blank" title="Jekyll">Jekyll</a> and hosted on <a href="https://pages.github.com/" target="_blank" title="Github Pages">Github Pages</a>
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Cormorant Garamond:700', 'Lato:300,400,700']
+    }
+  });
+</script>
+
+
+
+<script type="text/javascript" src="/assets/vendor.js"></script>
+<script type="text/javascript" src="/assets/application.js"></script>
+
+</body>
+</html>

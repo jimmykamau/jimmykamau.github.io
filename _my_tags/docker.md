@@ -1,4 +1,0 @@
----
-slug: docker
-name: Docker
----
