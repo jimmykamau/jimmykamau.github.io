@@ -83,7 +83,7 @@ Create an `.env` file with the following variables:
 {% highlight bash %}
 ENVIRONMENT_SETTINGS=DEVELOPMENT
 SECRET_KEY=my_super_secret_key
-DATABASE_URL=postgres://postgres:@db:5432
+DATABASE_URL=postgres://postgres:@db:5432/django_api
 {% endhighlight %}
 
 Build the images
@@ -91,7 +91,28 @@ Build the images
 foo@bar:~$ docker-compose build
 ```
 
-Start the services
+Start the `db` service
+```console
+foo@bar:~$ docker-compose up -d db
+```
+
+Grab a `psql` shell from the `db` service
+```console
+foo@bar:~$ docker-compose exec db psql -U postgres -h db -p 5432
+psql (11.1 (Debian 11.1-1.pgdg90+1))
+Type "help" for help.
+
+postgres=#
+```
+
+Create a database with the name you specified in the `.env` file, then exit the shell
+```console
+postgres=# CREATE DATABASE django_api;
+CREATE DATABASE
+postgres=# \q
+```
+
+Start the remaining services
 ```console
 foo@bar:~$ docker-compose up -d
 ```
